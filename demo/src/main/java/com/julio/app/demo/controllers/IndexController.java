@@ -5,6 +5,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.julio.app.demo.models.Usuario;
+
 @Controller
 @RequestMapping("/app") //RUTA DE PRIMER NIVEL
 public class IndexController {
@@ -30,5 +32,17 @@ public class IndexController {
         model.addAttribute("titulo", "Hola mundo desde Sprint Boot");
         return "index";
     }
+
+    @RequestMapping("/perfil")
+    public String perfil(Model model){
+        Usuario usuario = new Usuario();
+        usuario.setNombre("Magisk");
+        usuario.setApellido("OnlyHeadShot");
+
+        model.addAttribute("titulo", "Perfil");
+        model.addAttribute("usuario", usuario);
+
+        return "usuario/perfil";
+    }   
     
 }
