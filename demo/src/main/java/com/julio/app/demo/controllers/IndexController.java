@@ -1,5 +1,8 @@
 package com.julio.app.demo.controllers;
 
+import java.util.Arrays;
+import java.util.List;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -38,11 +41,26 @@ public class IndexController {
         Usuario usuario = new Usuario();
         usuario.setNombre("Magisk");
         usuario.setApellido("OnlyHeadShot");
+        usuario.setEmail("correo.com");
 
         model.addAttribute("titulo", "Perfil");
         model.addAttribute("usuario", usuario);
 
         return "usuario/perfil";
-    }   
+    }
+    
+    @RequestMapping("listar")
+    public String listar(Model model){
+        List<Usuario> usuarios = Arrays.asList(
+            new Usuario("Magisk", "OnlyHeadShot", "correo.com"),
+            new Usuario("Pepito", "Noob", "noob.com"),
+            new Usuario("Hitman", "OnlyHeadShot", null)
+        );
+    
+        model.addAttribute("titulo", "Listado de usuarios");
+        model.addAttribute("usuarios", usuarios);
+
+        return "usuario/listar";
+    }
     
 }

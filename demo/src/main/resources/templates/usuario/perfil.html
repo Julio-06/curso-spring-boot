@@ -7,7 +7,12 @@
     <title th:text="${titulo}"></title>
 </head>
 <body>
-    <h1 th:text="${usuario.getNombre}"></h1>
-    <h1 th:text="${usuario.getApellido}"></h1>
+    <h1 th:text="${usuario.nombre}"></h1>
+    <h1 th:text="${usuario.apellido}"></h1>
+    <h1 th:if="${usuario.email}" th:text="${usuario.email}"></h1>
+    <h1 th:if="${usuario.email == null}" th:text="'El usuario no tiene correo.'"></h1>
+    <!-- OTRA MANERA -->
+    <!-- <h1 th:if="${usuario.email == null}">El usuario no tiene correo.</h1> -->
+
 </body>
 </html>
