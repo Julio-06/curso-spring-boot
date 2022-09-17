@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.julio.app.demo.models.Usuario;
@@ -61,6 +62,21 @@ public class IndexController {
         model.addAttribute("usuarios", usuarios);
 
         return "usuario/listar";
+    }
+
+    /* DE ESTA MANERA PODEMOS PASAR ESA VARIABLE DE USUARIOS A TODOS LOS METODOS DEL Controller
+    NORMALMENTE SE UTILIZA EN EL CASO DE LOS SELECT, LISTAS, ETC. */
+
+     //DE ESTA MANERA SE LLAMARA NUESTRA VARIABLE EN LA VISTA
+    @ModelAttribute("usuarios")
+    public List<Usuario> poblarUsuarios(){
+        List<Usuario> usuarios = Arrays.asList(
+            new Usuario("Magisk", "OnlyHeadShot", "correo.com"),
+            new Usuario("Pepito", "Noob", "noob.com"),
+            new Usuario("Hitman", "OnlyHeadShot", null)
+        );
+
+        return usuarios;
     }
     
 }
