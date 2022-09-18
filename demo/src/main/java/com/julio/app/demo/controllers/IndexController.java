@@ -3,6 +3,8 @@ package com.julio.app.demo.controllers;
 import java.util.Arrays;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,7 +15,16 @@ import com.julio.app.demo.models.Usuario;
 
 @Controller
 @RequestMapping("/app") //RUTA DE PRIMER NIVEL
+//@PropertySource(ignoreResourceNotFound = true, value = "classpath:application.properties")
 public class IndexController {
+    @Value(value =  "${texto.indexController.index.titulo}")
+    private String textoIndex;
+
+    @Value(value =  "${texto.indexController.perfil.titulo}")
+    private String textoPerfil;
+
+    @Value(value =  "${texto.indexController.listar.titulo}")
+    private String textoListar; 
     //POR DEFECTO LAS RUTAS SE CREAN DE TIPO GET CUANDO USAS EL REQUESTMAPPING
     
     //LOS METODOS DE LA CLASE SON LAS RUTAS DE SEGUNDO NIVEL
@@ -33,7 +44,7 @@ public class IndexController {
          * 
          */
         
-        model.addAttribute("titulo", "Hola mundo desde Sprint Boot");
+        model.addAttribute("titulo", textoIndex);
         return "index";
     }
 
@@ -44,7 +55,7 @@ public class IndexController {
         usuario.setApellido("OnlyHeadShot");
         usuario.setEmail("correo.com");
 
-        model.addAttribute("titulo", "Perfil");
+        model.addAttribute("titulo", textoPerfil);
         model.addAttribute("usuario", usuario);
 
         return "usuario/perfil";
@@ -58,7 +69,7 @@ public class IndexController {
             new Usuario("Hitman", "OnlyHeadShot", null)
         );
     
-        model.addAttribute("titulo", "Listado de usuarios");
+        model.addAttribute("titulo", textoListar);
         model.addAttribute("usuarios", usuarios);
 
         return "usuario/listar";
