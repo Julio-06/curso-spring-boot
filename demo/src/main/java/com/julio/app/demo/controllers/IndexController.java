@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.julio.app.demo.models.Usuario;
 
 @Controller
+@PropertySource(ignoreResourceNotFound = true, value = "classpath:application.properties")
 @RequestMapping("/app") //RUTA DE PRIMER NIVEL
-//@PropertySource(ignoreResourceNotFound = true, value = "classpath:application.properties")
 public class IndexController {
     @Value(value =  "${texto.indexController.index.titulo}")
     private String textoIndex;
