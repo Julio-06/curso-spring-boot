@@ -3,7 +3,6 @@ package di.di.models.domain;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -16,7 +15,7 @@ public class Factura {
     @Autowired
     private Cliente cliente;
 
-    @Qualifier("itemsFactura")
+    @Autowired
     private List<IteamFactura> items;
 
     public String getDescripcion() {
