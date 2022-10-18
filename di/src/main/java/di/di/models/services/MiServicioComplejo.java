@@ -1,8 +1,8 @@
 package di.di.models.services;
 
-import org.springframework.stereotype.Service;
+//import org.springframework.stereotype.Service;
 
-@Service("miServicioComplejo")
+//@Service("miServicioComplejo")
 public class MiServicioComplejo implements IServicio{
 
     @Override

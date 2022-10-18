@@ -1,7 +1,7 @@
 package di.di.models.services;
 
 //import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
+//import org.springframework.stereotype.Service;
 import org.springframework.context.annotation.Primary;
 
 
@@ -12,7 +12,8 @@ import org.springframework.context.annotation.Primary;
  LA DIFERENCIA ENTRE COMPONENT Y SERVICE SOLO ES SEMANTICA.
  */
 
-@Service("miServicioSimple") /* 
+//@Service("miServicioSimple") 
+/* 
     cuando se le define un nombre al servicio o componente 
     definimos un cualificador
 */

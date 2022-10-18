@@ -12,7 +12,7 @@ import di.di.models.services.IServicio;
 public class IndexController {
 
     @Autowired
-    @Qualifier("miServicioComplejo") /*NOS PERMITE ESPECIFICAR OTRAS CLASES CONCRETAS */
+    @Qualifier("miServicioComplejo") //NOS PERMITE ESPECIFICAR OTRAS CLASES CONCRETAS
     private IServicio servicio;
 
     /* MEDIANTE EL CONSTRUCTOR TAMBIEN PODEMOS HACER LA INYECCIÓN DE DEPENDENCIA */
