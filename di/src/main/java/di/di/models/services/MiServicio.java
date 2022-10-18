@@ -16,6 +16,6 @@ import org.springframework.stereotype.Service;
 */
 public class MiServicio implements IServicio{
     public String operacion(){
-        return "ejecutando algún proceso.";
+        return "ejecutando algún proceso simple...";
     }
 }
