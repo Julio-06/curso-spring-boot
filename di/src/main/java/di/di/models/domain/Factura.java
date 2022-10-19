@@ -1,5 +1,6 @@
 package di.di.models.domain;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -9,9 +10,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
+import org.springframework.web.context.annotation.SessionScope;
 
 @Component
-public class Factura {
+@SessionScope /* NO PERMITE MANTENER LOS DATOS A NIVEL DE SESSIONES COMO POR EJEMPLO UN CARRITO DE COMPRAS */
+public class Factura implements Serializable {
 
     @Value("${factura.descripcion}")
     private String descripcion;

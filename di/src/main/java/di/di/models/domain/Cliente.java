@@ -2,8 +2,10 @@ package di.di.models.domain;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
+import org.springframework.web.context.annotation.RequestScope;
 
 @Component
+@RequestScope /*SE CREA Y SE DESTRUYE POR CADA PETICIÓN */
 public class Cliente {
 
     @Value("${cliente.nombre}")
