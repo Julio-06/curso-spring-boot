@@ -18,7 +18,7 @@ import org.springframework.web.bind.support.SessionStatus;
 import form.app.models.domain.Usuario;
 
 @Controller
-@SessionAttributes("user") /*NOS PERMITE MANETER LOS DATOS DURANTE EL CICLO DEL FORM */
+@SessionAttributes("usuario") /*NOS PERMITE MANETER LOS DATOS DURANTE EL CICLO DEL FORM */
 public class FormController {
     
     @GetMapping("/form")

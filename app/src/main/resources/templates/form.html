@@ -38,7 +38,7 @@
         <div>
             <label for="email">email</label>
             <div>
-                <input type="email" id="email" th:field="*{email}">
+                <input type="text" id="email" th:field="*{email}">
             </div>
             <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
             <!-- <div th:if="${error != null && error.containsKey('email')}" th:text="${error.email}"></div> -->

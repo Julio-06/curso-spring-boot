@@ -8,21 +8,21 @@ public class Usuario {
 
     private String identificador;
     
-    @NotEmpty(message = "EL nombre no puede sere vacío.")
+    @NotEmpty
     private String nombre;
 
-    @NotEmpty(message = "EL apellido no puede sere vacío.")
+    @NotEmpty
     private String apellido;
 
-    @NotEmpty(message = "EL username no puede sere vacío.")
+    @NotEmpty
     @Size(min = 3, max = 8)
     private String username;
 
-    @NotEmpty(message = "EL correo no puede sere vacío.")
+    @NotEmpty
     @Email
     private String email;
 
-    @NotEmpty(message = "La password no puede sere vacío.")
+    @NotEmpty
     private String password;
 
     public String getNombre() {
