@@ -1,19 +1,29 @@
 package form.app.models.domain;
 
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 
 public class Usuario {
 
     private String identificador;
     
-    @NotEmpty
+    @NotEmpty(message = "EL nombre no puede sere vacío.")
     private String nombre;
 
-    @NotEmpty
+    @NotEmpty(message = "EL apellido no puede sere vacío.")
     private String apellido;
 
-    @NotEmpty
+    @NotEmpty(message = "EL username no puede sere vacío.")
+    @Size(min = 3, max = 8)
     private String username;
+
+    @NotEmpty(message = "EL correo no puede sere vacío.")
+    @Email
+    private String email;
+
+    @NotEmpty(message = "La password no puede sere vacío.")
+    private String password;
 
     public String getNombre() {
         return nombre;
@@ -31,11 +41,6 @@ public class Usuario {
         this.apellido = apellido;
     }
 
-    @NotEmpty
-    private String email;
-
-    @NotEmpty
-    private String password;
 
     public String getUsername() {
         return username;
