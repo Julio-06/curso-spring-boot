@@ -5,6 +5,7 @@ import java.util.Map; */
 
 import javax.validation.Valid;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -16,10 +17,14 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
 import form.app.models.domain.Usuario;
+import form.app.validations.UsuarioValidador;
 
 @Controller
 @SessionAttributes("usuario") /*NOS PERMITE MANETER LOS DATOS DURANTE EL CICLO DEL FORM */
 public class FormController {
+
+    @Autowired
+    private UsuarioValidador validador;
     
     @GetMapping("/form")
     public String form(Model model){
@@ -41,6 +46,7 @@ public class FormController {
             @RequestParam String email,
             @RequestParam String password */
         ){
+        validador.validate(usuario, result);
         /*
          * UTILIZAMOS EL SESSIONSTATUS PARA COMPLETAR EL CLICLO DEL OBJETO DE LA SESSION Y CON 
          * STATUS.SETCOMPLETE ELIMINAMOS EL OBJETO DE LA SESSION 
