@@ -12,10 +12,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 //import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 
 import form.app.models.domain.Usuario;
 
 @Controller
+@SessionAttributes("user") /*NOS PERMITE MANETER LOS DATOS DURANTE EL CICLO DEL FORM */
 public class FormController {
     
     @GetMapping("/form")
@@ -32,12 +35,17 @@ public class FormController {
 
     @PostMapping("/form")
     public String procesar(
-            @Valid @ModelAttribute("user") Usuario usuario, BindingResult result, Model model
+            @Valid @ModelAttribute("user") Usuario usuario, BindingResult result, Model model,
+            SessionStatus status
             /* @RequestParam String username,
             @RequestParam String email,
             @RequestParam String password */
         ){
-        
+        /*
+         * UTILIZAMOS EL SESSIONSTATUS PARA COMPLETAR EL CLICLO DEL OBJETO DE LA SESSION Y CON 
+         * STATUS.SETCOMPLETE ELIMINAMOS EL OBJETO DE LA SESSION 
+         * 
+         */
         if(result.hasErrors()){
             /* Map<String, String> errores = new HashMap<>();
             result.getFieldErrors().forEach(err -> {
@@ -56,6 +64,7 @@ public class FormController {
         
         model.addAttribute("titulo", "resultado");
         model.addAttribute("usuario", usuario);
+        status.setComplete();
 
         return "resultado";
     }
