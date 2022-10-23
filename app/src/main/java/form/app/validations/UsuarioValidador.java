@@ -21,7 +21,7 @@ public class UsuarioValidador implements Validator {
         // TODO Auto-generated method stub
         Usuario usuario = (Usuario)target;
 
-        ValidationUtils.rejectIfEmpty(errors, "nombre", "NotEmpty.user.nombre");
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "nombre", "NotEmpty.user.nombre");
         
         if(!usuario.getIdentificador().matches("[\\d]{2}[.][\\d]{3}[.][\\d]{3}[-][A-Z]{1}")) {
             errors.rejectValue("identificador", "Pattern.user.identificador", null);
