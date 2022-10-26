@@ -7,6 +7,7 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
 import form.app.validations.IdentificadorRegex;
+import form.app.validations.Requerido;
 
 public class Usuario {
 
@@ -17,14 +18,15 @@ public class Usuario {
     //@NotEmpty
     private String nombre;
 
-    @NotEmpty
+    //@NotEmpty
+    @Requerido
     private String apellido;
 
     @NotBlank
     @Size(min = 3, max = 8)
     private String username;
 
-    @NotEmpty
+    @Requerido
     @Email
     private String email;
 
