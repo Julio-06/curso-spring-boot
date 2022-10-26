@@ -54,6 +54,14 @@
         </div>
 
         <div>
+            <label for="cuenta">cuenta</label>
+            <div>
+                <input type="number" id="cuenta" th:field="*{cuenta}">
+            </div>
+            <div th:if="${#fields.hasErrors('cuenta')}" th:errors="*{cuenta}"></div>
+        </div>
+
+        <div>
             <label for="password">password</label>
             <div>
                 <input type="password" id="password" th:field="*{password}">
