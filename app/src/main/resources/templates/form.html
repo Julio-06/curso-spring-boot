@@ -18,6 +18,18 @@
         </div>
 
         <div>
+            <label for="pais">País</label>
+            <div>
+                <select id="pais" th:field="*{pais}">
+                    <option value="">-- Selecionar país --</option>
+                    <option th:each="pais: ${paises}" th:text="${pais}"  th:value="${pais}"></option>
+                </select>
+            </div>
+            <div th:if="${#fields.hasErrors('pais')}" th:errors="*{pais}"></div>
+            <!-- <div th:if="${error != null && error.containsKey('username')}" th:text="${error.username}"></div> -->
+        </div>
+
+        <div>
             <label for="nombre">nombre</label>
             <div>
                 <input type="text" id="nombre" th:field="*{nombre}">

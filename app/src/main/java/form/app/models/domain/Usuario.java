@@ -48,7 +48,18 @@ public class Usuario {
     //@Future
     @Past
     //@DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date fechaNacimiento; 
+    private Date fechaNacimiento;
+
+    @NotEmpty /* SE COLOCA ESTE PORQUE SE TRATA DE UN STRING PERO SI FUERA UN OBJETO SE COLOCA NO @NotNull */
+    private String pais;
+
+    public String getPais() {
+        return pais;
+    }
+
+    public void setPais(String pais) {
+        this.pais = pais;
+    }
 
     public Date getFechaNacimiento() {
         return fechaNacimiento;

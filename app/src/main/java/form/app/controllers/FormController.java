@@ -1,7 +1,9 @@
 package form.app.controllers;
 
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 
 /* import java.util.HashMap;
 import java.util.Map; */
@@ -48,6 +50,11 @@ public class FormController {
 
         /* NOS PERMITE CONVERTIR TODOS LOS STRING ENVIADOS A MAYUSCULA Y QUITANDOLE LOS ESPECIOS EN BLANCO AL INICIO Y AL FINAL */
         binder.registerCustomEditor(String.class, new NombreMayusculaEditor());
+    }
+
+    @ModelAttribute("paises")
+    public List<String> paises(){
+        return Arrays.asList("Panamá", "Mexico", "USA");
     }
     
     @GetMapping("/form")
