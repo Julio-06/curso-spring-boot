@@ -17,6 +17,9 @@
         <li th:text="${usuario.password}"></li>
         <li th:text="${usuario.cuenta}"></li>
         <li th:text="${usuario.pais}"></li>
+        <!-- CUANDO COLOCAMOS EL # SIGNICA QUE ESTAMOS USANDO UN OBJETO HELPER O DE UTILIDAD DE thymeleaf -->
+        <li th:text="${#dates.format(usuario.fechaNacimiento, 'dd/MM/yyyy')}"></li>
+        <li th:text="${#calendars.format(usuario.fechaNacimiento, 'dd-MM-yyyy')}"></li>
     </ul>
 </body>
 </html>
