@@ -27,6 +27,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
 import form.app.editors.NombreMayusculaEditor;
+import form.app.models.domain.Pais;
 import form.app.models.domain.Usuario;
 import form.app.validations.UsuarioValidador;
 
@@ -62,6 +63,15 @@ public class FormController {
         paises.put("PA", "Panamá");
 
         return paises;
+    }
+
+    @ModelAttribute("listaPaises")
+    public List<Pais> listaPaises(){
+        return Arrays.asList(
+            new Pais(1, "PA", "Panamá"),
+            new Pais(1, "MX", "Mexico"),
+            new Pais(1, "COL", "Colombia")
+        );
     }
     
     @GetMapping("/form")

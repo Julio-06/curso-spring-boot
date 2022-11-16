@@ -20,12 +20,12 @@
         <div>
             <label for="pais">País</label>
             <div>
-                <select id="pais" th:field="*{pais}">
+                <select id="pais" th:field="*{pais.codigo}">
                     <option value="">-- Selecionar país --</option>
-                    <option th:each="pais: ${paises.entrySet()}" th:text="${pais.value}"  th:value="${pais.key}"></option>
+                    <option th:each="pais: ${listaPaises}" th:text="${pais.nombre}"  th:value="${pais.codigo}"></option>
                 </select>
             </div>
-            <div th:if="${#fields.hasErrors('pais')}" th:errors="*{pais}"></div>
+            <div th:if="${#fields.hasErrors('pais.codigo')}" th:errors="*{pais.codigo}"></div>
             <!-- <div th:if="${error != null && error.containsKey('username')}" th:text="${error.username}"></div> -->
         </div>
 
