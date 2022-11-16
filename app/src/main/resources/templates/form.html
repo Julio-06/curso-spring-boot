@@ -62,6 +62,14 @@
         </div>
 
         <div>
+            <label for="fechaNacimiento">Fecha de nacimiento</label>
+            <div>
+                <input type="text" id="fechaNacimiento" th:field="*{fechaNacimiento}" placeholder="yyyy/MM/dd">
+            </div>
+            <div th:if="${#fields.hasErrors('fechaNacimiento')}" th:errors="*{fechaNacimiento}"></div>
+        </div>
+
+        <div>
             <label for="password">password</label>
             <div>
                 <input type="password" id="password" th:field="*{password}">
