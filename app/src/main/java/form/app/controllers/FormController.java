@@ -3,7 +3,9 @@ package form.app.controllers;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /* import java.util.HashMap;
 import java.util.Map; */
@@ -53,8 +55,13 @@ public class FormController {
     }
 
     @ModelAttribute("paises")
-    public List<String> paises(){
-        return Arrays.asList("Panamá", "Mexico", "USA");
+    public Map<String, String> paisesMap(){
+        Map<String, String> paises = new HashMap<String, String>();
+        paises.put("ES", "España");
+        paises.put("MX", "Mexico");
+        paises.put("PA", "Panamá");
+
+        return paises;
     }
     
     @GetMapping("/form")
