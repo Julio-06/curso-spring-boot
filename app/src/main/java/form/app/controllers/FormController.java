@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
+import form.app.editors.NombreMayusculaEditor;
 import form.app.models.domain.Usuario;
 import form.app.validations.UsuarioValidador;
 
@@ -44,6 +45,9 @@ public class FormController {
         
         /* SI COLOCAMOS NOMBRE DEL CAMPO AL registerCustomEditor NO VALIDARA DE FORMA GLOBAL LOS CAMPOS DE FORMATO FECHA SI NO SOLO ES ESPECIFICADO */
         binder.registerCustomEditor(Date.class, "fechaNacimiento", new CustomDateEditor(dateFormat, false));
+
+        /* NOS PERMITE CONVERTIR TODOS LOS STRING ENVIADOS A MAYUSCULA Y QUITANDOLE LOS ESPECIOS EN BLANCO AL INICIO Y AL FINAL */
+        binder.registerCustomEditor(String.class, new NombreMayusculaEditor());
     }
     
     @GetMapping("/form")
