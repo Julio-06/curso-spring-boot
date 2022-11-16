@@ -40,8 +40,10 @@ public class FormController {
             ES LO MISMO SI VALIDAMOS EN EL MODELO CON @DateTimeFormat(pattern = "yyyy-MM-dd")
         */
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        dateFormat.setLenient(false); /* ES PARA QUE SEA ESTRICTO AL VALIDAR EL FORMATO DE LA FECHA */ 
-        binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, false));
+        dateFormat.setLenient(false); /* ES PARA QUE SEA ESTRICTO AL VALIDAR EL FORMATO DE LA FECHA */
+        
+        /* SI COLOCAMOS NOMBRE DEL CAMPO AL registerCustomEditor NO VALIDARA DE FORMA GLOBAL LOS CAMPOS DE FORMATO FECHA SI NO SOLO ES ESPECIFICADO */
+        binder.registerCustomEditor(Date.class, "fechaNacimiento", new CustomDateEditor(dateFormat, false));
     }
     
     @GetMapping("/form")
