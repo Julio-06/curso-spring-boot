@@ -1,11 +1,15 @@
 package form.app.controllers;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 /* import java.util.HashMap;
 import java.util.Map; */
 
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -31,6 +35,13 @@ public class FormController {
     @InitBinder
     public void initBinder(WebDataBinder binder){
         binder.addValidators(validador);
+
+        /* NOS PERMITE CUSTOMIZAR UN DATO QUE OBTENEMOS Y CONVERTIRLO A OTRO. 
+            ES LO MISMO SI VALIDAMOS EN EL MODELO CON @DateTimeFormat(pattern = "yyyy-MM-dd")
+        */
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        dateFormat.setLenient(false); /* ES PARA QUE SEA ESTRICTO AL VALIDAR EL FORMATO DE LA FECHA */ 
+        binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, false));
     }
     
     @GetMapping("/form")
