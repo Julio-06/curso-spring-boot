@@ -27,6 +27,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
 import form.app.editors.NombreMayusculaEditor;
+import form.app.editors.PaisPropertyEditor;
 import form.app.models.domain.Pais;
 import form.app.models.domain.Usuario;
 import form.app.services.PaisService;
@@ -41,6 +42,9 @@ public class FormController {
 
     @Autowired
     private PaisService paisService;
+
+    @Autowired
+    private PaisPropertyEditor paisPropertyEditor;
 
     @InitBinder
     public void initBinder(WebDataBinder binder){
@@ -57,6 +61,9 @@ public class FormController {
 
         /* NOS PERMITE CONVERTIR TODOS LOS STRING ENVIADOS A MAYUSCULA Y QUITANDOLE LOS ESPECIOS EN BLANCO AL INICIO Y AL FINAL */
         binder.registerCustomEditor(String.class, new NombreMayusculaEditor());
+
+        binder.registerCustomEditor(Pais.class, paisPropertyEditor);
+
     }
 
     @ModelAttribute("paises")

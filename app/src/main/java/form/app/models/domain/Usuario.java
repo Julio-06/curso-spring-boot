@@ -2,7 +2,7 @@ package form.app.models.domain;
 
 import java.util.Date;
 
-import javax.validation.Valid;
+//import javax.validation.Valid;
 import javax.validation.constraints.Email;
 //import javax.validation.constraints.Future;
 import javax.validation.constraints.Max;
@@ -54,7 +54,7 @@ public class Usuario {
     //@NotEmpty /* SE COLOCA ESTE PORQUE SE TRATA DE UN STRING PERO SI FUERA UN OBJETO SE COLOCA NO @NotNull */
     //private String pais;
 
-    @Valid
+    @NotNull
     private Pais pais;
 
     public Pais getPais() {

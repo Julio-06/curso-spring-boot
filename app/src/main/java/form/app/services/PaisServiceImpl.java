@@ -15,8 +15,8 @@ public class PaisServiceImpl implements PaisService{
     public PaisServiceImpl() {
         this.lista = Arrays.asList(
             new Pais(1, "PA", "Panamá"),
-            new Pais(1, "MX", "Mexico"),
-            new Pais(1, "COL", "Colombia")
+            new Pais(2, "MX", "Mexico"),
+            new Pais(3, "COL", "Colombia")
         );
     }
 
