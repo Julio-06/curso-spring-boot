@@ -1,6 +1,7 @@
 package form.app.models.domain;
 
 import java.util.Date;
+import java.util.List;
 
 //import javax.validation.Valid;
 import javax.validation.constraints.Email;
@@ -56,6 +57,17 @@ public class Usuario {
 
     @NotNull
     private Pais pais;
+
+    @NotEmpty //SIRVE PARA VALIDAR LISTAS Y ARREGLOS TAMBIEN
+    private List<String> roles;
+
+    public List<String> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<String> roles) {
+        this.roles = roles;
+    }
 
     public Pais getPais() {
         return pais;
