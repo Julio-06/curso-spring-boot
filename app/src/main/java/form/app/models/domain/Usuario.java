@@ -60,8 +60,19 @@ public class Usuario {
 
     @NotEmpty //SIRVE PARA VALIDAR LISTAS Y ARREGLOS TAMBIEN
     private List<Role> roles;
-    
+
     private Boolean habilitar;
+
+    @NotEmpty
+    private String genero;
+
+    public String getGenero() {
+        return genero;
+    }
+
+    public void setGenero(String genero) {
+        this.genero = genero;
+    }
 
     public Boolean getHabilitar() {
         return habilitar;

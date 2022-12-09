@@ -2,6 +2,7 @@ package form.app.controllers;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 //import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
@@ -116,6 +117,11 @@ public class FormController {
     @ModelAttribute("listaRolesObject")
     public List<Role> listaRolesObject(){
         return this.roleService.listar();
+    }
+
+    @ModelAttribute("generos")
+    public List<String> generos(){
+        return Arrays.asList("Hombre", "Mujer");
     }
     
     @GetMapping("/form")

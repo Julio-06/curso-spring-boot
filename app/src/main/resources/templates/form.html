@@ -25,6 +25,17 @@
         </div>
 
         <div>
+            <label>Género</label>
+            <div th:each="genero: ${generos}">
+                <input type="radio" th:field="*{genero}" th:value="${genero}">
+                <label th:for="${#ids.prev('genero')}" th:text="${genero}"></label>
+            </div>
+
+            <div th:if="${#fields.hasErrors('genero')}" th:errors="*{genero}"></div>
+
+        </div>
+
+        <div>
             <label>Roles</label>
             <div th:each="role: ${listaRolesObject}">
                 <input type="checkbox"  th:field="*{roles}" th:value="${role.id}">
