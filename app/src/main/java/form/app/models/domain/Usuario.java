@@ -60,6 +60,16 @@ public class Usuario {
 
     @NotEmpty //SIRVE PARA VALIDAR LISTAS Y ARREGLOS TAMBIEN
     private List<Role> roles;
+    
+    private Boolean habilitar;
+
+    public Boolean getHabilitar() {
+        return habilitar;
+    }
+
+    public void setHabilitar(Boolean habilitar) {
+        this.habilitar = habilitar;
+    }
 
     public List<Role> getRoles() {
         return roles;
