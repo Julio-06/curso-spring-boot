@@ -30,8 +30,10 @@ import org.springframework.web.bind.support.SessionStatus;
 import form.app.editors.NombreMayusculaEditor;
 import form.app.editors.PaisPropertyEditor;
 import form.app.models.domain.Pais;
+import form.app.models.domain.Role;
 import form.app.models.domain.Usuario;
 import form.app.services.PaisService;
+import form.app.services.RoleService;
 import form.app.validations.UsuarioValidador;
 
 @Controller
@@ -46,6 +48,9 @@ public class FormController {
 
     @Autowired
     private PaisPropertyEditor paisPropertyEditor;
+
+    @Autowired
+    private RoleService roleService;
 
     @InitBinder
     public void initBinder(WebDataBinder binder){
@@ -100,6 +105,11 @@ public class FormController {
         roles.put("ROLE_MODERATOR", "MODERADOR");
 
         return roles;
+    }
+
+    @ModelAttribute("listaRolesObject")
+    public List<Role> listaRolesObject(){
+        return this.roleService.listar();
     }
     
     @GetMapping("/form")
