@@ -7,7 +7,7 @@
     <title>Form</title>
 </head>
 <body>
-    <form th:action="@{/form}" method="post" th:object="${user}">
+    <form th:action="@{/form}" method="post" th:object="${usuario}">
         <div>
             <label for="identificador">Identificador</label>
             <div>
@@ -42,7 +42,7 @@
                     type="checkbox"  
                     th:field="*{roles}" 
                     th:value="${role.id}"
-                    th:checked="${#lists.contains(user.roles, role)}"
+                    th:checked="${#lists.contains(usuario.roles, role)}"
                 >
                 <label th:for="${#ids.prev('roles')}" th:text="${role.nombre}"></label>
             </div>
