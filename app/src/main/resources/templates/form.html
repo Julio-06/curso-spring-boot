@@ -38,7 +38,12 @@
         <div>
             <label>Roles</label>
             <div th:each="role: ${listaRolesObject}">
-                <input type="checkbox"  th:field="*{roles}" th:value="${role.id}">
+                <input 
+                    type="checkbox"  
+                    th:field="*{roles}" 
+                    th:value="${role.id}"
+                    th:checked="${#lists.contains(user.roles, role)}"
+                >
                 <label th:for="${#ids.prev('roles')}" th:text="${role.nombre}"></label>
             </div>
             <div th:if="${#fields.hasErrors('roles')}" th:errors="*{roles}"></div>
@@ -122,6 +127,7 @@
                 <input type="submit" value="submit">
             </div>
         </div>
+        <input type="hidden" name="" th:field="*{valorSecreto}">
     </form>
 </body>
 </html>
