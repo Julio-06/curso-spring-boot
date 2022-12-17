@@ -9,28 +9,40 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 </head>
 <body>
-    <h3 th:text="${titulo}"></h3>
-    <ul>
-        <li th:text="${usuario.nombre}"></li>
-        <li th:text="${usuario.apellido}"></li>
-        <li th:text="${usuario.identificador}"></li>
-        <li th:text="'Habilitado: ' + ${usuario.habilitar}"></li>
-        <li th:text="'Género: ' + ${usuario.genero}"></li>
-        <li th:text="${usuario.username}"></li>
-        <li th:text="${usuario.email}"></li>
-        <li th:text="${usuario.password}"></li>
-        <li th:text="${usuario.cuenta}"></li>
-        <li th:text="${usuario.valorSecreto}"></li>
-        <li th:text="${usuario.pais.id}"></li>
-        <li th:text="${usuario.pais.codigo}"></li>
-        <li th:text="${usuario.pais.nombre}"></li>
-        <!-- CUANDO COLOCAMOS EL # SIGNICA QUE ESTAMOS USANDO UN OBJETO HELPER O DE UTILIDAD DE thymeleaf -->
-        <li th:text="${#dates.format(usuario.fechaNacimiento, 'dd/MM/yyyy')}"></li>
-        <li th:text="${#calendars.format(usuario.fechaNacimiento, 'dd-MM-yyyy')}"></li>
-    </ul>
-    <div>Roles</div>
-    <ul>
-        <li th:each="role: ${usuario.roles}" th:text="${role.id} + ': ' + ${role.nombre} + ' => ' + ${role.role}"></li>
-    </ul>
+    <div class="container">
+        <h3 th:text="${titulo}"></h3>
+        <a th:href="@{/form}" class="btn btn-success my-3">volver</a>
+        <div class="row">
+            <div class="col">
+                <div>Roles</div>
+                <ul>
+                    <li th:each="role: ${usuario.roles}" th:text="${role.id} + ': ' + ${role.nombre} + ' => ' + ${role.role}"></li>
+                </ul>
+            </div>
+
+            <div class="col">
+                <ul>
+                    <li th:text="${usuario.nombre}"></li>
+                    <li th:text="${usuario.apellido}"></li>
+                    <li th:text="${usuario.identificador}"></li>
+                    <li th:text="'Habilitado: ' + ${usuario.habilitar}"></li>
+                    <li th:text="'Género: ' + ${usuario.genero}"></li>
+                    <li th:text="${usuario.username}"></li>
+                    <li th:text="${usuario.email}"></li>
+                    <li th:text="${usuario.password}"></li>
+                    <li th:text="${usuario.cuenta}"></li>
+                    <li th:text="${usuario.valorSecreto}"></li>
+                    <li th:text="${usuario.pais.id}"></li>
+                    <li th:text="${usuario.pais.codigo}"></li>
+                    <li th:text="${usuario.pais.nombre}"></li>
+                    <!-- CUANDO COLOCAMOS EL # SIGNICA QUE ESTAMOS USANDO UN OBJETO HELPER O DE UTILIDAD DE thymeleaf -->
+                    <li th:text="${#dates.format(usuario.fechaNacimiento, 'dd/MM/yyyy')}"></li>
+                    <li th:text="${#calendars.format(usuario.fechaNacimiento, 'dd-MM-yyyy')}"></li>
+                </ul>
+
+            </div>
+        </div>
+    </div>
+
 </body>
 </html>
