@@ -9,11 +9,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Component;
+import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
 
-@Component
+@Component("tiempoTranscurridoInterceptor")
 public class TiempoTranscurridoInterceptor implements HandlerInterceptor {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(TiempoTranscurridoInterceptor.class);
@@ -22,7 +23,13 @@ public class TiempoTranscurridoInterceptor implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
             throws Exception {
 
+        if(handler instanceof HandlerMethod){
+            HandlerMethod metodo = (HandlerMethod) handler;
+            LOGGER.info("Es un método del controlador: " + metodo.getMethod().getName());
+        }
+
         LOGGER.info("TiempoTranscurridoInterceptor: preHandle() entrando ...");
+        LOGGER.info("Interceptando: " + handler);
         long tiempoInicio = System.currentTimeMillis();
         request.setAttribute("tiempoInicio", tiempoInicio);
 
@@ -41,7 +48,11 @@ public class TiempoTranscurridoInterceptor implements HandlerInterceptor {
         long tiempoFinal = System.currentTimeMillis();
         long tiempoTranscurrido =  tiempoFinal - tiempoInicio;
         
-        if(modelAndView != null){
+        /* SE TIENE QUE REALIZAR ESTA VALIDACIÓN CUANDO EL INTERCEPTOR ESTA DEFINIDO
+        GLOBALMENTE YA QUE INTERCEPTA TODO TIPO DE PREDICIONES COMO LAS HOJAS DE ESTILOS
+        RECURSOS ETC QUE NO TIENE DEFINIDO EL modelAndView */
+
+        if(handler instanceof HandlerMethod && modelAndView != null){
             modelAndView.addObject("tiempoTranscurrido", tiempoTranscurrido);
         }
 
