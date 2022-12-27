@@ -48,20 +48,23 @@ public class TiempoTranscurridoInterceptor implements HandlerInterceptor {
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
             @Nullable ModelAndView modelAndView) throws Exception {
 
-        long tiempoInicio = (Long) request.getAttribute("tiempoInicio");
-        long tiempoFinal = System.currentTimeMillis();
-        long tiempoTranscurrido =  tiempoFinal - tiempoInicio;
-        
-        /* SE TIENE QUE REALIZAR ESTA VALIDACIÓN CUANDO EL INTERCEPTOR ESTA DEFINIDO
-        GLOBALMENTE YA QUE INTERCEPTA TODO TIPO DE PREDICIONES COMO LAS HOJAS DE ESTILOS
-        RECURSOS ETC QUE NO TIENE DEFINIDO EL modelAndView */
+        /* ESTA VALIDACIÓN SE COLOCO PARA EVITAR QUE tiempoInicio NO EXISTIERA AL MOMENTO DE HACER EL CAST */
+        if(!request.getMethod().equalsIgnoreCase("post")){ 
+            long tiempoInicio = (Long) request.getAttribute("tiempoInicio");
+            long tiempoFinal = System.currentTimeMillis();
+            long tiempoTranscurrido =  tiempoFinal - tiempoInicio;
+            
+            /* SE TIENE QUE REALIZAR ESTA VALIDACIÓN CUANDO EL INTERCEPTOR ESTA DEFINIDO
+            GLOBALMENTE YA QUE INTERCEPTA TODO TIPO DE PREDICIONES COMO LAS HOJAS DE ESTILOS
+            RECURSOS ETC QUE NO TIENE DEFINIDO EL modelAndView */
 
-        if(handler instanceof HandlerMethod && modelAndView != null){
-            modelAndView.addObject("tiempoTranscurrido", tiempoTranscurrido);
+            if(handler instanceof HandlerMethod && modelAndView != null){
+                modelAndView.addObject("tiempoTranscurrido", tiempoTranscurrido);
+            }
+
+            LOGGER.info("Tiempo transcurrido: " + tiempoTranscurrido + " milisegundos");
+            LOGGER.info("TiempoTranscurridoInterceptor: postHandle() saliendo ...");
         }
-
-        LOGGER.info("Tiempo transcurrido: " + tiempoTranscurrido + " milisegundos");
-        LOGGER.info("TiempoTranscurridoInterceptor: postHandle() saliendo ...");
     }
 
 }
