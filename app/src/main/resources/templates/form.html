@@ -13,9 +13,7 @@
         <form th:action="@{/form}" method="post" th:object="${usuario}">
             <div class="row my-4">
                 <div class="col">
-                    <div class="alert alert-success">
-                        <span th:text="'Tiempo Transcurrido: ' + ${tiempoTranscurrido} + ' en milisegundos'"></span>
-                    </div>
+                    <section th:replace="components/tiempoTranscurrido :: interceptor"></section>
                 </div>
             </div>
 

@@ -12,9 +12,7 @@
     <div class="container">
         <div class="row">
             <div class="col">
-                <div class="alert alert-success">
-                    <span th:text="'Tiempo Transcurrido: ' + ${tiempoTranscurrido} + ' en milisegundos'"></span>
-                </div>
+                <section th:replace="components/tiempoTranscurrido :: interceptor"></section>
             </div>
         </div>
         <div class="row">
