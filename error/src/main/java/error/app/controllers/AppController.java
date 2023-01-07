@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class AppController {
     @GetMapping("/index")
     public String index() {
+        Integer num = 100/0;
         return "index";
     }
     
