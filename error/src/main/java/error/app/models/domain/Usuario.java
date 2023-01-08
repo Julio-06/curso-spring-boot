@@ -26,6 +26,10 @@ public class Usuario {
         return nombre;
     }
 
+    public String getNombreCompleto(){
+        return nombre.concat(" ").concat(apellido);
+    }
+
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
