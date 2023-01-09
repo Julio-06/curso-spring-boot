@@ -30,8 +30,14 @@
                   <input th:field="*{email}" type="email" class="form-control" placeholder="Correo" aria-label="Correo">
                 </div>
                 <div class="col-4 my-2">
-                  <input type="submit" value="Crear Cliente" class="btn btn-primary">
+                  <input th:field="*{createdAt}" type="text" class="form-control" placeholder="Fecha de creación" aria-label="Fecha de creación">
                 </div>
+                
+            </div>
+            <div class="row">
+                <div class="col-4 my-2">
+                    <input type="submit" value="Crear Cliente" class="btn btn-primary">
+                  </div>
             </div>
             <input type="hidden" th:field="*{id}">
         </form>
