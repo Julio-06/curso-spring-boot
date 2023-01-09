@@ -16,6 +16,7 @@ import org.springframework.web.bind.support.SessionStatus;
 import datajpa.app.dao.IClienteDao;
 import datajpa.app.models.entities.Cliente;
 
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -59,6 +60,17 @@ public class ClienteController {
         return "client/form";
     }
 
+    @GetMapping("/delete/{id}")
+    public String delete(@PathVariable(value = "id") Long id) {
+
+        if(id > 0){
+            clienteDao.delete(id);
+        }
+        
+        return "redirect:/listar";
+
+    }
+
     @PostMapping("/form")
     public String guardar(@Valid Cliente cliente, BindingResult result, Model model, SessionStatus status){
         if(result.hasErrors()){
@@ -68,7 +80,7 @@ public class ClienteController {
 
         clienteDao.save(cliente);
         status.setComplete();
-        
+
         return "redirect:listar";
     }
     
