@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${titulo}"></title>
+    <link rel="stylesheet" th:href="@{/bootstrap-5.2.3/css/bootstrap.min.css}">
+    <script th:src="@{/bootstrap-5.2.3/js/bootstrap.bundle.min.js}"></script>
+</head>
+<body>
+    <div>
+        
+    </div>
+    <div class="container">
+        <form th:action="@{/form}" method="post" th:object="${cliente}">
+            <div class="row">
+                <div class="col">
+                    <h1 th:text="${titulo}"></h1>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-4">
+                  <input th:field="*{nombre}" type="text" class="form-control" placeholder="Nombre" aria-label="Nombre">
+                </div>
+                <div class="col-4">
+                  <input th:field="*{apellido}" type="text" class="form-control" placeholder="Apellido" aria-label="Apellido">
+                </div>
+                <div class="col-4">
+                  <input th:field="*{email}" type="email" class="form-control" placeholder="Correo" aria-label="Correo">
+                </div>
+                <div class="col-4 my-2">
+                  <input type="submit" value="Crear Cliente" class="btn btn-primary">
+                </div>
+            </div>
+            <input type="hidden" th:field="*{id}">
+        </form>
+    </div>
+    
+</body>
+</html>
