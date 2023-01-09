@@ -10,23 +10,23 @@ import org.springframework.stereotype.Repository;
 import datajpa.app.models.entities.Cliente;
 
 @Repository
-public class ClienteDaoImpl implements IClienteDao {
+public class ClienteDaoImpl  {
     
     @PersistenceContext
     private EntityManager entityManager;
 
-    @Override
+    
     @SuppressWarnings("unchecked")
     public List<Cliente> findAll() {
         return entityManager.createQuery("from Cliente").getResultList();
     }
 
-    @Override
+    
     public Cliente findOne(long id) {
         return entityManager.find(Cliente.class, id);
     }
 
-    @Override
+    
     public void save(Cliente cliente) {
         if(cliente.getId() != null && cliente.getId() > 0){
             entityManager.merge(cliente);
@@ -35,7 +35,7 @@ public class ClienteDaoImpl implements IClienteDao {
         }
     }
 
-    @Override
+    
     public void delete(Long id) {
         entityManager.remove(findOne(id));
     }
