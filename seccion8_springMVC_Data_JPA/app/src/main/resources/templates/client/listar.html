@@ -48,7 +48,11 @@
                             <td th:text="${cliente.getEmail}"></td>
                             <td th:text="${cliente.getCreatedAt}"></td>
                             <td><a th:href="@{/form/} + ${cliente.getId}" class="btn btn-dark">Editar</a></td>
-                            <td><a th:href="@{/delete/} + ${cliente.getId}" class="btn btn-danger">Eliminar</a></td>
+                            <td><a th:href="@{/delete/} + ${cliente.getId}" class="btn btn-danger" 
+                                onclick="return confirm('Estás seguro que desea eliminar este cliente.')"
+                                >
+                                Eliminar
+                            </a></td>
                             <!-- <td>
                                 <form th:action="@{/form/} + ${cliente.getId}" th:method="delete">
                                     <input type="submit" value="Eliminar" class="btn btn-danger">

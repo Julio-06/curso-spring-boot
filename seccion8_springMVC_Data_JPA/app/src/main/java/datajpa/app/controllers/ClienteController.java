@@ -13,10 +13,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
-import datajpa.app.dao.IClienteDao;
 import datajpa.app.models.entities.Cliente;
+import datajpa.app.models.services.IClienteService;
 
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -26,12 +25,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class ClienteController {
     
     @Autowired
-    private IClienteDao clienteDao;
+    private IClienteService clienteService;
 
     @RequestMapping(value = "/listar", method = RequestMethod.GET)
     public String listar(Model model){
         model.addAttribute("titulo", "Listado de clientes");
-        model.addAttribute("clientes", clienteDao.findAll());
+        model.addAttribute("clientes", clienteService.findAll());
 
         return "client/listar";
     }
@@ -52,7 +51,7 @@ public class ClienteController {
             return "redirect:listar";
         }
 
-        Cliente cliente = clienteDao.findOne(id);
+        Cliente cliente = clienteService.findOne(id);
 
         model.put("cliente", cliente);
         model.put("titulo", "Formulario de Cliente");
@@ -64,7 +63,7 @@ public class ClienteController {
     public String delete(@PathVariable(value = "id") Long id) {
 
         if(id > 0){
-            clienteDao.delete(id);
+            clienteService.delete(id);
         }
         
         return "redirect:/listar";
@@ -78,7 +77,7 @@ public class ClienteController {
             return "client/form";
         }
 
-        clienteDao.save(cliente);
+        clienteService.save(cliente);
         status.setComplete();
 
         return "redirect:listar";

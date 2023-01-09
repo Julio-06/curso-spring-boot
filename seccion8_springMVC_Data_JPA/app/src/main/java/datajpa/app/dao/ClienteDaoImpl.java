@@ -6,7 +6,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
 import datajpa.app.models.entities.Cliente;
 
@@ -17,20 +16,17 @@ public class ClienteDaoImpl implements IClienteDao {
     private EntityManager entityManager;
 
     @Override
-    @Transactional(readOnly = true)
     @SuppressWarnings("unchecked")
     public List<Cliente> findAll() {
         return entityManager.createQuery("from Cliente").getResultList();
     }
 
     @Override
-    @Transactional(readOnly = true)
     public Cliente findOne(long id) {
         return entityManager.find(Cliente.class, id);
     }
 
     @Override
-    @Transactional
     public void save(Cliente cliente) {
         if(cliente.getId() != null && cliente.getId() > 0){
             entityManager.merge(cliente);
@@ -40,7 +36,6 @@ public class ClienteDaoImpl implements IClienteDao {
     }
 
     @Override
-    @Transactional
     public void delete(Long id) {
         entityManager.remove(findOne(id));
     }
