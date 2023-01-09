@@ -22,15 +22,19 @@
             <div class="row">
                 <div class="col-4">
                   <input th:field="*{nombre}" type="text" class="form-control" placeholder="Nombre" aria-label="Nombre">
+                  <small class="text-danger" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></small>
                 </div>
                 <div class="col-4">
                   <input th:field="*{apellido}" type="text" class="form-control" placeholder="Apellido" aria-label="Apellido">
+                  <small class="text-danger" th:if="${#fields.hasErrors('apellido')}" th:errors="*{apellido}"></small>
                 </div>
                 <div class="col-4">
-                  <input th:field="*{email}" type="email" class="form-control" placeholder="Correo" aria-label="Correo">
+                  <input th:field="*{email}" type="text" class="form-control" placeholder="Correo" aria-label="Correo">
+                  <small class="text-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></small>
                 </div>
                 <div class="col-4 my-2">
                   <input th:field="*{createdAt}" type="text" class="form-control" placeholder="Fecha de creación" aria-label="Fecha de creación">
+                  <small class="text-danger" th:if="${#fields.hasErrors('createdAt')}" th:errors="*{createdAt}"></small>
                 </div>
                 
             </div>
