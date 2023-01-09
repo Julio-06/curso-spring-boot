@@ -5,25 +5,27 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title th:text="${titulo}"></title>
+    <link rel="stylesheet" th:href="@{/bootstrap-5.2.3/css/bootstrap.min.css}">
+    <script th:src="@{/bootstrap-5.2.3/js/bootstrap.bundle.min.js}"></script>
 </head>
 <body>
     <div>
         <h1 th:text="${titulo}"></h1>
-        <table>
+        <table class="table">
             <thead>
                 <tr>
-                    <th>ID</th>
-                    <th>NOMBRE</th>
-                    <th>APELLIDO</th>
-                    <th>EMAIL</th>
-                    <th>CREATED_AT</th>
+                    <th scope="col">ID</th>
+                    <th scope="col">NOMBRE</th>
+                    <th scope="col">APELLIDO</th>
+                    <th scope="col">EMAIL</th>
+                    <th scope="col">CREATED_AT</th>
                 </tr>
                 
             </thead>
 
             <tbody>
                 <tr th:each="cliente : ${clientes}">
-                    <td th:text="${cliente.getId}"></td>
+                    <td th:text="${cliente.getId}" scope="row"></td>
                     <td th:text="${cliente.getNombre}"></td>
                     <td th:text="${cliente.getApellido}"></td>
                     <td th:text="${cliente.getEmail}"></td>
