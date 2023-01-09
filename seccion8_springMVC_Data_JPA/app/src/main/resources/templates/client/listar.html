@@ -33,7 +33,8 @@
                             <th scope="col">NOMBRE</th>
                             <th scope="col">APELLIDO</th>
                             <th scope="col">EMAIL</th>
-                            <th scope="col">CREATED_AT</th>
+                            <th scope="col">FECHA DE CREACIÓN</th>
+                            <th scope="col">EDITAR</th>
                         </tr>
                         
                     </thead>
@@ -45,6 +46,7 @@
                             <td th:text="${cliente.getApellido}"></td>
                             <td th:text="${cliente.getEmail}"></td>
                             <td th:text="${cliente.getCreatedAt}"></td>
+                            <td><a th:href="@{/form/} + ${cliente.getId}" class="btn btn-dark">Editar</a></td>
                         </tr>
                     </tbody>
                 </table>

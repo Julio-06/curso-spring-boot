@@ -9,10 +9,13 @@
     <script th:src="@{/bootstrap-5.2.3/js/bootstrap.bundle.min.js}"></script>
 </head>
 <body>
-    <div>
-        
-    </div>
     <div class="container">
+        <div class="row">
+            <div class="col">
+                <a th:href="@{/listar}" class="btn btn-success my-3">Clientes</a>
+            </div>
+        </div>
+
         <form th:action="@{/form}" method="post" th:object="${cliente}">
             
             <div class="row">
@@ -30,7 +33,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <div class="row">
                 <div class="col-4">
                   <input th:field="*{nombre}" type="text" class="form-control" placeholder="Nombre" aria-label="Nombre">
@@ -55,7 +58,7 @@
                     <input type="submit" value="Crear Cliente" class="btn btn-primary">
                   </div>
             </div>
-            <input type="hidden" th:field="*{id}">
+            <!-- <input type="hidden" th:field="*{id}"> SE QUITO PARA USAR SESSIONATTRIBUTES-->
         </form>
     </div>
     
