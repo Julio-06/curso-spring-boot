@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import datajpa.app.models.entities.Cliente;
 import datajpa.app.models.services.IClienteService;
@@ -45,13 +46,19 @@ public class ClienteController {
     }
 
     @GetMapping("/form/{id}")
-    public String editar(@PathVariable(value = "id") Long id, Map<String, Object> model) {
+    public String editar(@PathVariable(value = "id") Long id, Map<String, Object> model, RedirectAttributes flash) {
 
         if(id < 0){
-            return "redirect:listar";
+            flash.addFlashAttribute("error", "El ID del cliente no puedo ser cero.");
+            return "redirect:/listar";
         }
 
         Cliente cliente = clienteService.findOne(id);
+
+        if(cliente == null){
+            flash.addFlashAttribute("error", "El cliente no existe.");
+            return "redirect:/listar";
+        }
 
         model.put("cliente", cliente);
         model.put("titulo", "Formulario de Cliente");
@@ -60,10 +67,12 @@ public class ClienteController {
     }
 
     @GetMapping("/delete/{id}")
-    public String delete(@PathVariable(value = "id") Long id) {
+    public String delete(@PathVariable(value = "id") Long id, RedirectAttributes flash) {
 
         if(id > 0){
             clienteService.delete(id);
+            flash.addFlashAttribute("success", "Cliente eliminado con éxito.");
+
         }
         
         return "redirect:/listar";
@@ -71,15 +80,17 @@ public class ClienteController {
     }
 
     @PostMapping("/form")
-    public String guardar(@Valid Cliente cliente, BindingResult result, Model model, SessionStatus status){
+    public String guardar(@Valid Cliente cliente, BindingResult result, Model model, RedirectAttributes flash, SessionStatus status){
         if(result.hasErrors()){
             model.addAttribute("titulo", "Formulario de Cliente");
             return "client/form";
         }
 
+        String mensajeFlash = (cliente.getId() != null)? "Cliente editado con éxito." : "Cliente creado con éxito.";
+        
         clienteService.save(cliente);
         status.setComplete();
-
+        flash.addFlashAttribute("success", mensajeFlash);
         return "redirect:listar";
     }
     
