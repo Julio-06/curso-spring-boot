@@ -20,6 +20,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import datajpa.app.models.entities.Cliente;
 import datajpa.app.models.services.IClienteService;
+import datajpa.app.utils.paginator.PageRender;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -35,12 +36,15 @@ public class ClienteController {
     @RequestMapping(value = "/listar", method = RequestMethod.GET)
     public String listar(@RequestParam(name = "page", defaultValue = "0") int page, Model model){
         
-        Pageable pageRequest = PageRequest.of(page, 4);
+        Pageable pageRequest = PageRequest.of(page, 5);
 
         Page<Cliente> clientes = clienteService.findAll(pageRequest);
 
+        PageRender<Cliente> pageRender = new PageRender<>("/listar", clientes);
+
         model.addAttribute("titulo", "Listado de clientes");
         model.addAttribute("clientes", clientes);
+        model.addAttribute("page", pageRender);
 
         return "client/listar";
     }
