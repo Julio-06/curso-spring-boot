@@ -1,5 +1,6 @@
 package datajpa.app.controllers;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.nio.file.Files;
@@ -47,6 +48,8 @@ public class ClienteController {
     private IClienteService clienteService;
 
     private final Logger log = LoggerFactory.getLogger(getClass());
+
+    private final static String UPLOADS_FOLDER = "uploads";
 
     @RequestMapping(value = "/listar", method = RequestMethod.GET)
     public String listar(@RequestParam(name = "page", defaultValue = "0") int page, Model model){
@@ -114,9 +117,19 @@ public class ClienteController {
     public String delete(@PathVariable(value = "id") Long id, RedirectAttributes flash) {
 
         if(id > 0){
+            Cliente cliente = clienteService.findOne(id);
+
             clienteService.delete(id);
             flash.addFlashAttribute("success", "Cliente eliminado con éxito.");
 
+            Path rootPath = Paths.get(UPLOADS_FOLDER).resolve(cliente.getFoto()).toAbsolutePath();
+            File archivo = rootPath.toFile();
+
+            if(archivo.exists() && archivo.canRead()){
+                if(archivo.delete()){
+                    flash.addFlashAttribute("info", "Foto " + cliente.getFoto() + " eliminada con exito!");
+                }
+            }
         }
         
         return "redirect:/listar";
@@ -138,9 +151,24 @@ public class ClienteController {
             //Path directorioRecursos = Paths.get("src//main//resources//static/uploads");
             //String rootPath = directorioRecursos.toFile().getAbsolutePath();
             //String rootPath = "C://imagenes_spring_curso//uploads";
+
+            if(cliente.getId() != null 
+                && cliente.getId() > 0 
+                && cliente.getFoto() != null
+                && cliente.getFoto().length() > 0
+            ){
+                Path rootPath = Paths.get(UPLOADS_FOLDER).resolve(cliente.getFoto()).toAbsolutePath();
+                File archivo = rootPath.toFile();
+
+                if(archivo.exists() && archivo.canRead()){
+                    archivo.delete();
+
+                }
+            }
+
             String uniqueFileName = UUID.randomUUID().toString() + "_" + foto.getOriginalFilename();
 
-            Path rootPath = Paths.get("uploads").resolve(uniqueFileName);
+            Path rootPath = Paths.get(UPLOADS_FOLDER).resolve(uniqueFileName);
 
             Path rootAbsoluPath = rootPath.toAbsolutePath();
 
@@ -174,7 +202,7 @@ public class ClienteController {
 
     @GetMapping(value = "/uploads/{file:.+}") //SE COLOCA EL :.+ PARA QUE SPRING NO TRUNKE LA EXTENSIÓN DEL ARCHIVO
     public ResponseEntity<Resource> verFoto(@PathVariable String file){
-        Path pathFoto = Paths.get("uploads").resolve(file).toAbsolutePath();
+        Path pathFoto = Paths.get(UPLOADS_FOLDER).resolve(file).toAbsolutePath();
         log.info("pathFoto: " + pathFoto);
         Resource resource = null;
         try {
