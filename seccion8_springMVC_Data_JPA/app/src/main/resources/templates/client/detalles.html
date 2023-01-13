@@ -26,7 +26,7 @@
             <div class="col">
                 <div class="card" style="width: 18rem;">
                     <img
-                        th:if="${cliente.foto} != null ? ${#strings.length(cliente.foto) > 0 : ''}"
+                        th:if="${cliente.foto} != null ? ${#strings.length(cliente.foto) > 0}"
                         th:src="@{'/uploads/' + ${cliente.foto}}" 
                         class="card-img-top img-thumbnail" 
                         th:alt="${cliente.foto}"
