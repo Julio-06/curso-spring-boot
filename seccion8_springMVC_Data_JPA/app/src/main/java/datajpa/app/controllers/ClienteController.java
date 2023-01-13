@@ -96,7 +96,7 @@ public class ClienteController {
 
         model.put("cliente", cliente);
         model.put("titulo", "Detalle cliente: " + cliente.getNombre());
-        
+
         return "client/detalles";
     }
 
@@ -125,8 +125,9 @@ public class ClienteController {
         }
 
         if(!foto.isEmpty()){
-            Path directorioRecursos = Paths.get("src//main//resources//static/uploads");
-            String rootPath = directorioRecursos.toFile().getAbsolutePath();
+            //Path directorioRecursos = Paths.get("src//main//resources//static/uploads");
+            //String rootPath = directorioRecursos.toFile().getAbsolutePath();
+            String rootPath = "C://imagenes_spring_curso//uploads";
 
             try{
                 byte[] bytes = foto.getBytes();
