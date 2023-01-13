@@ -4,9 +4,45 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title th:text="${titulo}"></title>
+    <link rel="stylesheet" th:href="@{/bootstrap-5.2.3/css/bootstrap.min.css}">
+    <script th:src="@{/bootstrap-5.2.3/js/bootstrap.bundle.min.js}"></script>
 </head>
 <body>
-    
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <section th:replace="components/alerts :: alerts"></section>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <a th:href="@{/listar}" class="btn btn-success my-3">Clientes</a>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <div class="card" style="width: 18rem;">
+                    <img
+                    th:if="${#strings.length(cliente.foto) > 0}" 
+                        th:src="@{'/uploads/' + ${cliente.foto}}" 
+                        class="card-img-top img-thumbnail" 
+                        th:alt="${cliente.foto}"
+                    >
+                    <div class="card-body">
+                      <ul>
+                        <li th:text="${cliente.nombre}"></li>
+                        <li th:text="${cliente.apellido}"></li>
+                        <li th:text="${cliente.email}"></li>
+                        <li th:text="${cliente.createdAt}"></li>
+                        
+                      </ul>
+                    </div>
+                  </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

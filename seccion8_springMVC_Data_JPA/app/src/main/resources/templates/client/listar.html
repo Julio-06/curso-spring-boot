@@ -48,7 +48,7 @@
         
                     <tbody>
                         <tr th:each="cliente : ${clientes}">
-                            <td th:text="${cliente.getId}" scope="row"></td>
+                            <td scope="row"><a class="btn btn-info" th:href="@{/ver/} + ${cliente.getId}" th:text="${cliente.getId}"></a></td>
                             <td th:text="${cliente.getNombre}"></td>
                             <td th:text="${cliente.getApellido}"></td>
                             <td th:text="${cliente.getEmail}"></td>
