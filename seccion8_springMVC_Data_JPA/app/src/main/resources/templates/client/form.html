@@ -56,6 +56,10 @@
                   <input th:field="*{createdAt}" type="text" class="form-control" placeholder="Fecha de creación" aria-label="Fecha de creación">
                   <small class="text-danger" th:if="${#fields.hasErrors('createdAt')}" th:errors="*{createdAt}"></small>
                 </div>
+                <div class="col-4 my-2">
+                  <input  type="file" name="file" class="form-control" placeholder="foto del cliente" aria-label="foto del cliente">
+                  <small class="text-danger" th:if="${#fields.hasErrors('foto')}" th:errors="*{foto}"></small>
+                </div>
                 
             </div>
             <div class="row">
