@@ -42,10 +42,20 @@ public class Cliente implements Serializable {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date createdAt;
 
+    private String foto;
+
     /* @PrePersist
     public void prePersist(){
         createdAt = new Date();
     } */
+
+    public String getFoto() {
+        return foto;
+    }
+
+    public void setFoto(String foto) {
+        this.foto = foto;
+    }
 
     public Long getId() {
         return id;
