@@ -1,13 +1,18 @@
 package datajpa.app.models.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 //import javax.persistence.PrePersist;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -44,10 +49,38 @@ public class Cliente implements Serializable {
 
     private String foto;
 
-    /* @PrePersist
-    public void prePersist(){
-        createdAt = new Date();
-    } */
+    /*
+     * CON 'OneToMany' UN CLIENTE MUCHAS FACTURAS.
+     * 
+     * CON EL 'FetchType.LAZY' SOLO REALIZA LA CONSULTA CUANDO SE LE LLAMA 
+     * Y EL EAGER CARGA TODOS LOS DATOS INCLUSO CUANDO NO SE NECESITEN.
+     * 
+     * CON EL 'mappedBy' CREARA DE FORMA AUTOMATICA UNA LLAVE 'cliente_id'
+     * EN LA TABLA 'facturas' COMO LLAVE FORANEA PARA RELACIONAR AMBAS
+     * TABLAS.
+     */
+
+    @OneToMany(mappedBy = "cliente" ,fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<Factura> facturas;
+
+    /*
+     * @PrePersist
+     * public void prePersist(){
+     * createdAt = new Date();
+     * }
+     */
+    
+    public Cliente() {
+        facturas = new ArrayList<Factura>();
+    }
+
+    public List<Factura> getFacturas() {
+        return facturas;
+    }
+
+    public void setFacturas(List<Factura> facturas) {
+        this.facturas = facturas;
+    }
 
     public String getFoto() {
         return foto;
@@ -95,6 +128,10 @@ public class Cliente implements Serializable {
 
     public void setCreatedAt(Date createdAt) {
         this.createdAt = createdAt;
+    }
+
+    public void addFactura(Factura factura){
+        facturas.add(factura);
     }
 
 }
