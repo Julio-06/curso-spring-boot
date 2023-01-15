@@ -3,41 +3,29 @@ package datajpa.app.models.entities;
 import java.io.Serializable;
 import java.util.Date;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-@Table(name = "facturas_items")
-public class ItemFactura implements Serializable {
+@Table(name = "productos")
+public class Producto implements Serializable {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Integer cantidad;
+    private Double precio;
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "created_at")
     private Date createdAt;
-
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    /*
-        @JoinColumn(name = "producto_id") SE OMITIO ESTA LINEA 
-        YA QUE POR DEFECTO CREA EL CAMPO 'producto_id' GRACIAS
-        A LA RELACIÓN 'ManyToOne'
-    */
-    
-    private Producto producto;
 
     @PrePersist
     public void prePersist(){
@@ -52,12 +40,12 @@ public class ItemFactura implements Serializable {
         this.id = id;
     }
 
-    public Integer getCantidad() {
-        return cantidad;
+    public Double getPrecio() {
+        return precio;
     }
 
-    public void setCantidad(Integer cantidad) {
-        this.cantidad = cantidad;
+    public void setPrecio(Double precio) {
+        this.precio = precio;
     }
 
     public Date getCreatedAt() {
@@ -67,10 +55,5 @@ public class ItemFactura implements Serializable {
     public void setCreatedAt(Date createdAt) {
         this.createdAt = createdAt;
     }
-
-    public Double calcularImporte(){
-        return cantidad.doubleValue() * producto.getPrecio();
-    }
-
     
 }

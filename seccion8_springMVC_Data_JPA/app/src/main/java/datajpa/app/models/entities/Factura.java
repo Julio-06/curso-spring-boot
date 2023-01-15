@@ -41,13 +41,20 @@ public class Factura implements Serializable {
     /*
      * CON 'ManyToOne' MUCHAS FACTURAS UN CLIENTE.
      * 
-     * CON EL 'FetchType.LAZY' SOLO REALIZA LA CONSULTA CUANDO SE LE LLAMA 
+     * CON EL 'FetchType.LAZY' SOLO REALIZA LA CONSULTA CUANDO SE LE LLAMA
      * Y EL EAGER CARGA TODOS LOS DATOS INCLUSO CUANDO NO SE NECESITEN.
-    */
-    
-    @ManyToOne(fetch = FetchType.LAZY) 
+     */
+
+    @ManyToOne(fetch = FetchType.LAZY)
     private Cliente cliente;
 
+    /*
+     * SE COLOCO EL '@JoinColumn' PARA ESPECIFICAR EL CAMPO PARA RELACIONARLOS
+     * YA QUE SE TRATA DE UNA RELACIÓN UNIDIRECCIONAL CON EL MODELO ItemFactura Y NO
+     * COMO LA RELACIÓN
+     * ENTRE Cliente Y Factura QUE ES EN AMBOS SENTIDOS POR LO QUE PODEMOS USAR EL
+     * 'mappedBy'.
+     */
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "factura_id")
     private List<ItemFactura> itemsFactura;
@@ -57,8 +64,16 @@ public class Factura implements Serializable {
     }
 
     @PrePersist
-    public void prePersist(){
+    public void prePersist() {
         createdAt = new Date();
+    }
+
+    public List<ItemFactura> getItemsFactura() {
+        return itemsFactura;
+    }
+
+    public void setItemsFactura(List<ItemFactura> itemsFactura) {
+        this.itemsFactura = itemsFactura;
     }
 
     public Cliente getCliente() {
@@ -109,7 +124,17 @@ public class Factura implements Serializable {
         this.createdAt = createdAt;
     }
 
-    public void addItemFactura(ItemFactura itemFactura){
+    public void addItemFactura(ItemFactura itemFactura) {
         itemsFactura.add(itemFactura);
+    }
+
+    public Double getTotal(){
+        Double total = 0.0;
+
+        for (ItemFactura itemFactura : itemsFactura) {
+            total += itemFactura.calcularImporte();
+        }
+
+        return total;
     }
 }

@@ -13,7 +13,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-//import javax.persistence.PrePersist;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -50,7 +49,8 @@ public class Cliente implements Serializable {
     private String foto;
 
     /*
-     * CON 'OneToMany' UN CLIENTE MUCHAS FACTURAS.
+     * LAS RELACIONES SIEMPRE VAN DESDE LA CLASE A LA OTRA 
+     * EJEMPLO: 'OneToMany' UN CLIENTE MUCHAS FACTURAS.
      * 
      * CON EL 'FetchType.LAZY' SOLO REALIZA LA CONSULTA CUANDO SE LE LLAMA 
      * Y EL EAGER CARGA TODOS LOS DATOS INCLUSO CUANDO NO SE NECESITEN.
@@ -63,13 +63,6 @@ public class Cliente implements Serializable {
     @OneToMany(mappedBy = "cliente" ,fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Factura> facturas;
 
-    /*
-     * @PrePersist
-     * public void prePersist(){
-     * createdAt = new Date();
-     * }
-     */
-    
     public Cliente() {
         facturas = new ArrayList<Factura>();
     }
