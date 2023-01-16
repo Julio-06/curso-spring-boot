@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<body>
+    <table th:fragment="itemsFactura" class="d-none">
+        <thead>
+            <tr>
+                <th>
+
+                </th>
+            </tr>
+        </thead>
+
+        <tbody id="plantillaItemsFactura">
+            <tr id="row_{ID}">
+                <td class="d-none"><input type="hidden" name="item_id[]" value="{ID}" class="form-control"></td>
+                <td>{NOMBRE}</td>
+                <td>{PRECIO}</td>
+                <td><input type="number" name="cantidad[]" id="cantidad_{ID}" value="1" class="form-control"></td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>
