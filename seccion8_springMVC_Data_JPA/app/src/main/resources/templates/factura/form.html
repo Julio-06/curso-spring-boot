@@ -4,9 +4,57 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title th:text="${titulo}"></title>
+    <link rel="stylesheet" th:href="@{/bootstrap-5.2.3/css/bootstrap.min.css}">
+    <script th:src="@{/bootstrap-5.2.3/js/bootstrap.bundle.min.js}"></script>
 </head>
 <body>
-    
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <section th:replace="components/alerts :: alerts"></section>
+            </div>
+        </div>
+
+        <form th:action="@{/factura/form}" method="post" th:object="${factura}">
+            
+            <div class="row">
+                <div class="col-12">
+                    <h1 th:text="${titulo}"></h1>
+                </div>
+                <div class="col-12">
+                    <h3 th:text="'Nombre del cliente: ' + ${factura.cliente.getNombreCompleto}"></h3>
+                </div>
+
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <div th:object="${factura}" th:remove="tag">
+                        <ul th:if="${#fields.hasErrors('*')}" class="alert alert-danger">
+                            <li th:each="err: ${#fields.errors('*')}" th:text="${err}"></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12">
+                  <input th:field="*{descripcion}" type="text" class="form-control" placeholder="Descripción" aria-label="Descripción">
+                  <small class="text-danger" th:if="${#fields.hasErrors('descripcion')}" th:errors="*{descripcion}"></small>
+                </div>
+                <div class="col-12 my-2">
+                  <textarea th:field="*{observacion}" type="text" class="form-control" placeholder="Observación" aria-label="Observación"></textarea>
+                  <small class="text-danger" th:if="${#fields.hasErrors('observacion')}" th:errors="*{observacion}"></small>
+                </div>
+                
+            </div>
+            <div class="row">
+                <div class="col-4 my-2">
+                    <input type="submit" value="Crear Factura" class="btn btn-primary">
+                  </div>
+            </div>
+        </form>
+    </div>
 </body>
 </html>

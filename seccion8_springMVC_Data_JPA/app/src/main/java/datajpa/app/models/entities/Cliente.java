@@ -123,6 +123,10 @@ public class Cliente implements Serializable {
         this.createdAt = createdAt;
     }
 
+    public String getNombreCompleto(){
+        return this.nombre.concat(" ").concat(apellido);
+    }
+
     public void addFactura(Factura factura){
         facturas.add(factura);
     }
