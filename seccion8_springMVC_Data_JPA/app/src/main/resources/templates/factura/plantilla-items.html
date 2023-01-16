@@ -7,7 +7,17 @@
                 <td class="d-none"><input type="hidden" name="item_id[]" value="{ID}" class="form-control"></td>
                 <td>{NOMBRE}</td>
                 <td>{PRECIO}</td>
-                <td><input type="number" name="cantidad[]" id="cantidad_{ID}" value="1" class="form-control"></td>
+                <td>
+                    <input 
+                        class="form-control"
+                        type="number" 
+                        name="cantidad[]" 
+                        id="cantidad_{ID}" 
+                        value="1"
+                        onchange="itemsHelper.calcularImporte({ID}, {PRECIO}, this.value);" 
+                    >
+                </td>
+                <td><span id="total_importe_{ID}">0</span></td>
             </tr>
         </tbody>
     </table>
