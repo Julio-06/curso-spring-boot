@@ -40,6 +40,7 @@
                             <th scope="col">APELLIDO</th>
                             <th scope="col">EMAIL</th>
                             <th scope="col">FECHA DE CREACIÓN</th>
+                            <th scope="col">CREAR FACTURA</th>
                             <th scope="col">EDITAR</th>
                             <th scope="col">ELIMINAR</th>
                         </tr>
@@ -53,6 +54,7 @@
                             <td scope="row" th:text="${cliente.getApellido}"></td>
                             <td scope="row" th:text="${cliente.getEmail}"></td>
                             <td scope="row" th:text="${cliente.getCreatedAt}"></td>
+                            <td scope="row"><a th:href="@{/factura/form/} + ${cliente.getId}" class="btn btn-secondary">Crear Factura</a></td>
                             <td scope="row"><a th:href="@{/form/} + ${cliente.getId}" class="btn btn-dark">Editar</a></td>
                             <td scope="row"><a th:href="@{/delete/} + ${cliente.getId}" class="btn btn-danger" 
                                 onclick="return confirm('Estás seguro que desea eliminar este cliente.')"

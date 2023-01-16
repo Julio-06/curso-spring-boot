@@ -16,6 +16,18 @@
             </div>
         </div>
 
+        <div class="row">
+            <div class="col">
+                <a th:href="@{/listar}" class="btn btn-success my-2">Clientes</a>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <a class="btn btn-info my-2" th:href="@{/ver/} + ${factura.cliente.getId}">&laquo; volver</a>
+            </div>
+        </div>
+
         <form th:action="@{/factura/form}" method="post" th:object="${factura}">
             
             <div class="row">
