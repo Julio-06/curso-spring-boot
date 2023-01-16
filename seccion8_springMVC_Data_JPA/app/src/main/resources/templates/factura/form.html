@@ -43,8 +43,13 @@
                   <textarea th:field="*{observacion}" type="text" class="form-control" placeholder="Observación" aria-label="Observación"></textarea>
                   <small class="text-danger" th:if="${#fields.hasErrors('observacion')}" th:errors="*{observacion}"></small>
                 </div>
+
+                <div class="col-12">
+                    <input type="text" class="form-control" name="buscar_producto" id="buscar_producto" placeholder="Buscar producto" aria-label="Buscar producto">
+                </div>
                 
             </div>
+
             <div class="row">
                 <div class="col-4 my-2">
                     <input type="submit" value="Crear Factura" class="btn btn-primary">
@@ -54,5 +59,6 @@
     </div>
 
     <footer th:replace="layouts/main :: footer"></footer>
+    <script th:replace="factura/js/autocomplete-productos :: javascript"></script>
 </body>
 </html>
