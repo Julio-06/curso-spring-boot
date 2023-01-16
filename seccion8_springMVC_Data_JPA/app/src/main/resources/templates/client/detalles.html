@@ -43,6 +43,39 @@
                   </div>
             </div>
         </div>
+
+        <div class="row">
+            <div class="col">
+                <table th:if="${not #lists.isEmpty(cliente.facturas)}" class="table" >
+                    <thead>
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">FOLIO</th>
+                            <th scope="col">DESCRIPCIÓN</th>
+                            <th scope="col">OBSERVACIÓN</th>
+                            <th scope="col">FECHA DE CREACIÓN</th>
+                            <th scope="col">TOTAL</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr th:each="factura : ${cliente.facturas}">
+                            <td scope="row" th:text="${factura.getId}"></td>
+                            <td scope="row" th:text="${factura.getFolio}"></td>
+                            <td scope="row" th:text="${factura.getDescripcion}"></td>
+                            <td scope="row" th:text="${factura.getObservacion}"></td>
+                            <td scope="row" th:text="${factura.getCreatedAt}"></td>
+                            <td scope="row" th:text="${factura.getTotal}"></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div th:if="${#lists.isEmpty(cliente.facturas)}" class="alert alert-primary my-5" role="alert">
+                    No tiene facturas!
+                </div>
+
+            </div>
+        </div>
     </div>
 </body>
 </html>

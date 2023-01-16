@@ -49,12 +49,12 @@
                     <tbody>
                         <tr th:each="cliente : ${clientes}">
                             <td scope="row"><a class="btn btn-info" th:href="@{/ver/} + ${cliente.getId}" th:text="${cliente.getId}"></a></td>
-                            <td th:text="${cliente.getNombre}"></td>
-                            <td th:text="${cliente.getApellido}"></td>
-                            <td th:text="${cliente.getEmail}"></td>
-                            <td th:text="${cliente.getCreatedAt}"></td>
-                            <td><a th:href="@{/form/} + ${cliente.getId}" class="btn btn-dark">Editar</a></td>
-                            <td><a th:href="@{/delete/} + ${cliente.getId}" class="btn btn-danger" 
+                            <td scope="row" th:text="${cliente.getNombre}"></td>
+                            <td scope="row" th:text="${cliente.getApellido}"></td>
+                            <td scope="row" th:text="${cliente.getEmail}"></td>
+                            <td scope="row" th:text="${cliente.getCreatedAt}"></td>
+                            <td scope="row"><a th:href="@{/form/} + ${cliente.getId}" class="btn btn-dark">Editar</a></td>
+                            <td scope="row"><a th:href="@{/delete/} + ${cliente.getId}" class="btn btn-danger" 
                                 onclick="return confirm('Estás seguro que desea eliminar este cliente.')"
                                 >
                                 Eliminar
