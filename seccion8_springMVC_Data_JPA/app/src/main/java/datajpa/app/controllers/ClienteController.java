@@ -165,7 +165,8 @@ public class ClienteController {
         clienteService.save(cliente);
         status.setComplete();
         flash.addFlashAttribute("success", mensajeFlash);
-        return "redirect:listar";
+        
+        return "redirect:/listar";
     }
 
     @GetMapping(value = "/uploads/{file:.+}") // SE COLOCA EL :.+ PARA QUE SPRING NO TRUNKE LA EXTENSIÓN DEL ARCHIVO

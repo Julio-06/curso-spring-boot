@@ -1,25 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title th:text="${titulo}"></title>
-    <link rel="stylesheet" th:href="@{/bootstrap-5.2.3/css/bootstrap.min.css}">
-    <script th:src="@{/bootstrap-5.2.3/js/bootstrap.bundle.min.js}"></script>
-</head>
+<head th:replace="layouts/main :: head"></head>
 <body>
+    <header th:replace="layouts/main :: header"></header>
+    
     <div class="container">
-        <div class="row">
-            <div class="col">
-                <section th:replace="components/alerts :: alerts"></section>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col">
-                <a th:href="@{/listar}" class="btn btn-success my-3">Clientes</a>
-            </div>
-        </div>
 
         <form th:action="@{/form}" method="post" th:object="${cliente}" enctype="multipart/form-data">
             
@@ -71,5 +56,6 @@
         </form>
     </div>
     
+    <footer th:replace="layouts/main :: footer"></footer>
 </body>
 </html>
