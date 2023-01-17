@@ -107,4 +107,21 @@ public class FacturaController {
 
         return "redirect:/ver/" + factura.getCliente().getId();    
     }
+
+    @GetMapping("/ver/{id}")
+    public String ver(@PathVariable Long id, Model model, RedirectAttributes flash){
+
+        Factura factura = clienteService.findFacturaById(id);
+
+        if(factura == null){
+            flash.addFlashAttribute("error", "La factura no existe!");
+
+            return "redirect:/listar";
+        }
+
+        model.addAttribute("titulo", "Factura: ".concat(factura.getDescripcion()));
+        model.addAttribute("factura", factura );
+        
+        return "factura/ver";
+    }
 }
