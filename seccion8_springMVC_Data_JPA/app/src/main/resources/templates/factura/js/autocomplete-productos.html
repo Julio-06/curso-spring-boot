@@ -41,6 +41,14 @@
                     return false;
                 }
             });
+
+            /* SE ELIMINA LA PLANTILLA PARA QUE AL MOMENTO DE SER ENVIADO EL FORM
+            NO SE TOMEN ENCUENTA LOS INPUTS QUE CONTIENE LA PLANTILLA. */
+
+            $("form").submit(function(){
+                $("#plantillaItemsFactura").remove();
+                return;
+            });
         });
 
         var itemsHelper = {

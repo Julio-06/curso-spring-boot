@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -65,6 +66,7 @@ public class Factura implements Serializable {
 
     @PrePersist
     public void prePersist() {
+        folio = UUID.randomUUID().toString();
         createdAt = new Date();
     }
 
