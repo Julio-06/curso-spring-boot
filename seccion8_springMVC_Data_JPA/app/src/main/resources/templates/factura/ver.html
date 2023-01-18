@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:replace="layouts/main :: head"></head>
+<body>
+    <header th:replace="layouts/main :: header"></header>
+
+    <div class="container py-4">
+        <div class="card">
+            <div class="card-header" th:text="${titulo}"></div>
+
+            <div class="card-body">
+              <h4 class="card-title">
+                <a th:href="@{'/ver/' + ${factura.cliente.id} }" class="btn btn-success my-2">&laquo; volver</a>
+              </h4>
+
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item" th:text="'Datos del cliente'"></li>
+                <li class="list-group-item" th:text="${factura.cliente.getNombreCompleto}"></li>
+                <li class="list-group-item" th:text="${factura.cliente.email}"></li>
+              </ul>
+              <hr>
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item" th:text="'Datos de la factura'"></li>
+                <li class="list-group-item" th:text="'Id: ' + ${factura.id}"></li>
+                <li class="list-group-item" th:text="'Folio: ' + ${factura.folio}"></li>
+                <li class="list-group-item" th:text="'Descripción: ' + ${factura.descripcion}"></li>
+                <li class="list-group-item" th:text="'Fecha de creación: ' + ${factura.createdAt}"></li>
+              </ul>
+
+            </div>
+        </div>
+    </div>
+
+    <footer th:replace="layouts/main :: footer"></footer>
+</body>
+</html>
